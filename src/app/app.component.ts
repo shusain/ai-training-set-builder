@@ -19,7 +19,6 @@ export class AppComponent {
   @ViewChild(VideoPlayerComponent, { static: false })
   videoPlayerComponent?: VideoPlayerComponent;
 
-  folderPath = '';
 
   constructor(private imageStorageService: ImageStorageService, private apiService: ApiService) {}
   saveAllImagesAndDescriptions(folderPath: string) {
@@ -72,8 +71,8 @@ export class AppComponent {
   setCurrentFrameAsImage() {
     const video = this.videoPlayerComponent?.videoPlayer?.nativeElement;
     const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 512;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
     const ctx = canvas.getContext('2d');
     ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
     canvas.toBlob(blob => {

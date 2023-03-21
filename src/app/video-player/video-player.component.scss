@@ -1,4 +1,13 @@
-video {
-    width: 80vw;
-    margin-left: 10vw;
-}
+:host {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  video {
+    width: 100%;
+    height: auto;
+  }
+  

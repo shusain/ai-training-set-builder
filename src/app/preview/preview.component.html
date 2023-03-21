@@ -1,0 +1,26 @@
+<div *ngIf="selectedIndex !== null; else noImages">
+    <h3>Preview</h3>
+    <img [src]="imageList[selectedIndex].image" />
+    <div>
+      <button (click)="previous()" [disabled]="selectedIndex === 0">Previous</button>
+      <button (click)="next()" [disabled]="selectedIndex === imageList.length - 1">Next</button>
+    </div>
+    <div>
+      <label for="promptText">Prompt Text:</label>
+      <textarea
+        id="promptText"
+        [(ngModel)]="imageList[selectedIndex].description"
+        (ngModelChange)="updatePromptText($event)"
+      ></textarea>
+    </div>
+  </div>
+  <ng-template #noImages>
+    <h3>No Images Available</h3>
+  </ng-template>
+  <!-- Add this code at the end of preview.component.html -->
+<div *ngIf="selectedIndex !== null">
+    <label for="folderPath">Target Folder Path:</label>
+    <input type="text" id="folderPath" [(ngModel)]="folderPath" />
+    <button (click)="saveAllImagesAndDescriptions(folderPath)">Save All Images and Descriptions</button>
+  </div>
+  

@@ -1,35 +1,45 @@
-<div>
-  <input type="file" (change)="fileChangeEvent($event)" />
-</div>
-<image-cropper
-  [imageChangedEvent]="imageChangedEvent"
-  [maintainAspectRatio]="true"
-  [aspectRatio]="1"
-  format="png"
-  [imageFile]="imageTempFile"
-  (imageCropped)="imageCropped($event)"
-  [resizeToWidth]="512"
-  [resizeToHeight]="512"
-></image-cropper>
-<div>
-  <button (click)="startSpeechRecognition()">Start Speech Recognition</button>
-  <button (click)="stopSpeechRecognition()">Stop Speech Recognition</button>
-  <p>Prompt Text: {{ promptText }}</p>
-  <textarea [(ngModel)]="promptText"></textarea>
-</div>
-<div>
-  <button (click)="savePrompt()">Save Prompt</button>
-</div>
-<div>
-  <h3>Preview</h3>
-  <img [src]="croppedImage" *ngIf="croppedImage" />
-</div>
-<app-video-player #videoPlayerComponent></app-video-player>
-<button (click)="setCurrentFrameAsImage()">Use Current Frame as Image</button>
+<mat-tab-group>
+  
+  <mat-tab label="Video Player">
+    <app-video-player #videoPlayerComponent></app-video-player>
+    <button (click)="setCurrentFrameAsImage()">Use Current Frame as Image</button>
+  </mat-tab>
+  
+  <mat-tab label="Image Cropper">
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="1"
+      format="png"
+      [imageFile]="imageTempFile"
+      (imageCropped)="imageCropped($event)"
+      [resizeToWidth]="512"
+      [resizeToHeight]="512"
+    ></image-cropper>
+  </mat-tab>
+  
+  <mat-tab label="Speech Recognition">
+    <div *ngIf="croppedImage">
+      <h3>Preview</h3>
+      <img [src]="croppedImage" />
+    </div>
 
-
-<div>
-  <label for="folderPath">Target Folder Path:</label>
-  <input type="text" id="folderPath" [(ngModel)]="folderPath" />
-  <button (click)="saveAllImagesAndDescriptions(folderPath)">Save All Images and Descriptions</button>
-</div>
+    <div>
+      <button (click)="startSpeechRecognition()">Start Speech Recognition</button>
+      <button (click)="stopSpeechRecognition()">Stop Speech Recognition</button>
+      <p>Prompt Text: {{ promptText }}</p>
+      <textarea [(ngModel)]="promptText"></textarea>
+      <button (click)="savePrompt()">Save Prompt</button>
+    </div>
+  </mat-tab>
+  
+  <mat-tab label="File Selection">
+    <div>
+      <input type="file" (change)="fileChangeEvent($event)" />
+    </div>
+  </mat-tab>
+  
+  <mat-tab label="Preview">
+    <app-preview [croppedImage]="croppedImage" (saveAll)="saveAllImagesAndDescriptions($event)"></app-preview>
+  </mat-tab>
+</mat-tab-group>
