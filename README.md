@@ -4,6 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+This project also relies on a node server backend to be running for saving the files on your local filesystem, to run the server in a separate terminal just run: `node server/index.js` and the server will be running on port 3000 waiting to save files to your disk on behalf of the FE.
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
