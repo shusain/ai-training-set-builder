@@ -22,7 +22,9 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "typeRoots": ["node_modules/@types"],
+    "types": ["dom-speech-recognition"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

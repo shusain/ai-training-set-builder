@@ -1,0 +1,10 @@
+<div>
+    <input type="file" (change)="onFileSelected($event)" accept="video/*" />
+    <video #videoPlayer [src]="videoSrc" (play)="isPlaying = true" (pause)="isPlaying = false" preload="metadata"></video>
+  </div>
+  <div>
+    <button (click)="playPauseVideo()">{{ isPlaying ? 'Pause' : 'Play' }}</button>
+    <button (click)="moveFrame(-1)">Backward 1 frame</button>
+    <button (click)="moveFrame(1)">Forward 1 frame</button>
+  </div>
+  
