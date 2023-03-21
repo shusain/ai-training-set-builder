@@ -18,7 +18,7 @@ export class AppComponent {
   promptText: string = '';
   @ViewChild(VideoPlayerComponent, { static: false })
   videoPlayerComponent?: VideoPlayerComponent;
-
+  selectedTabIndex = 0;
 
   constructor(private imageStorageService: ImageStorageService, private apiService: ApiService) {}
   saveAllImagesAndDescriptions(folderPath: string) {
@@ -66,6 +66,7 @@ export class AppComponent {
   }
   savePrompt() {
     this.imageStorageService.addImage(this.croppedImage, this.promptText);
+    this.selectedTabIndex = 0
   }
   
   setCurrentFrameAsImage() {
@@ -81,6 +82,7 @@ export class AppComponent {
         type: 'image/png',
       });
     })
+    this.selectedTabIndex = 1;
   }
   
 }
